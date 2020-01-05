@@ -7,7 +7,7 @@ public class Actor {
 	
 	@Override
 	public String toString() {
-		return "Actor [firstName=" + firstName + ", lastName=" + lastName + ", id=" + id + "]";
+		return "Actor [firstName = " + firstName + ", lastName = " + lastName + ", id = " + id + "]";
 	}
 
 	public String getFirstName() {
