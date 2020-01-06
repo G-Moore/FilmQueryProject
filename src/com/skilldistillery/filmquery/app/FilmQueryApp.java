@@ -7,6 +7,7 @@ import java.util.Scanner;
 import com.skilldistillery.filmquery.database.DatabaseAccessor;
 import com.skilldistillery.filmquery.database.DatabaseAccessorObject;
 import com.skilldistillery.filmquery.entities.Film;
+import com.skilldistillery.filmquery.entities.Language;
 
 public class FilmQueryApp {
 
@@ -27,7 +28,7 @@ public class FilmQueryApp {
 //		System.out.println(filmActors);
 //	}
 
-	private void launch() {
+	private void launch() throws SQLException {
 		Scanner sc = new Scanner(System.in);
 
 		startUserInterface(sc);
@@ -35,7 +36,7 @@ public class FilmQueryApp {
 		sc.close();
 	}
 
-	private void startUserInterface(Scanner sc) {
+	private void startUserInterface(Scanner sc) throws SQLException {
 		int i = 1;
 		do {
 			System.out.println("Enter a number to continue.\n" + "1 : Look up a film by its id.\n"
@@ -49,15 +50,15 @@ public class FilmQueryApp {
 					System.out.println("Enter a film id number.");
 					int userFilmId = sc.nextInt();
 					Film film = db.findFilmById(userFilmId);
-//					Language language = db.
+					Language language = db.findALanguageById(i);
 
 					if (userFilmId > 1000) {
 						System.out.println("That selection seems to be invalid.\nFilm Id range 1-1000.");
 					} else {
 						System.out.println("\nTitle\t     : " + film.getTitle() + "\nRelease Year : "
 								+ film.getReleaseYear() + "\nRating\t     : " + film.getRating() + "\nLanguage     : "
-								+ "\nDescription  : " + film.getDescription() + "\nActors\t     : " + film.getActors()
-								+ "\n");
+								+ language.getName() + "\nDescription  : " + film.getDescription() + "\nActors\t     : "
+								+ film.getActors() + "\n");
 						x = 0;
 					}
 				} while (x > 0);
@@ -66,14 +67,15 @@ public class FilmQueryApp {
 				System.out.println("Enter a search keyword.");
 				String userKeyword = sc.next();
 				List<Film> films = db.findFilmByKeyword(userKeyword);
+				Language language = db.findALanguageById(i);
+
 				films.forEach(film -> {
 					System.out.println("\nTitle\t     : " + film.getTitle() + "\nRelease Year : "
-							+ film.getReleaseYear() + "\nRating\t     : " + film.getRating() + "\nLanguage     : "
-							+ "\nDescription  : " + film.getDescription() + "\nActors\t     : " + film.getActors()
-							+ "\n");
-					
+							+ film.getReleaseYear() + "\nLanguage     : " + language.getName() + "\nRating\t     : "
+							+ film.getRating() + "\nDescription  : " + film.getDescription() + "\nActors\t     : "
+							+ film.getActors() + "\n");
 				});
-				
+
 			} else if (userInput == 3) {
 				System.out.println("3");
 				i = 0;

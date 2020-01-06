@@ -17,6 +17,15 @@ public class Film {
 	private List<Actor> actors;
 	private List<Film> films;
 	
+	
+
+
+	
+
+
+	
+
+
 	public List<Film> getFilms() {
 		return films;
 	}
@@ -42,7 +51,7 @@ public class Film {
 		return "Film [id=" + id + ", title=" + title + ", description=" + description + ", releaseYear=" + releaseYear
 				+ ", languageId=" + languageId + ", rentalDuration=" + rentalDuration + ", rentalRate=" + rentalRate
 				+ ", length=" + length + ", replacementCost=" + replacementCost + ", rating=" + rating
-				+ ", specialFeatures=" + specialFeatures + ", actors=" + actors + "]";
+				+ ", specialFeatures=" + specialFeatures + ", films=" + films + "]";
 	}
 
 
