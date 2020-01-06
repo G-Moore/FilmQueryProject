@@ -21,5 +21,6 @@
 
 ### Technologies Used
 
-* SQL search terms :
-* Object-Relational Mapping
+* Standardized Query Language search : SQL
+* Object-Relational Mapping : ORM
+* Java Database Connectivity :  JDBC
