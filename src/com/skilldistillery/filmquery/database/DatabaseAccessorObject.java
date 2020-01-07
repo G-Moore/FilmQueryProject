@@ -131,11 +131,11 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 			Connection conn = DriverManager.getConnection(URL, user, pass);
 			String sql = "SELECT film.id, film.title, film.description, film.release_year, "
 					+ "film.language_id, film.rental_duration, film.rental_rate, film.length, film.replacement_cost, "
-					+ "film.rating, film.special_features from film where film.id = ? ";
+					+ "film.rating, film.special_features from film where title LIKE ? OR description LIKE ? ";
 			PreparedStatement stmt = conn.prepareStatement(sql);
-			stmt.setString(1, keyword);
-			ResultSet rs = stmt.executeQuery(
-					"SELECT * FROM film WHERE title LIKE '%" + keyword + "%' OR description LIKE '%" + keyword + "%'");
+			stmt.setString(1, "%" + keyword + "%");
+			stmt.setString(2, "%" + keyword + "%");
+			ResultSet rs = stmt.executeQuery();
 			while (rs.next()) {
 				Film film = new Film(rs.getInt("film.id"), rs.getString("film.title"), rs.getString("film.description"),
 						rs.getInt("film.release_year"), rs.getInt("film.language_id"),
@@ -154,10 +154,6 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 		return films;
 	}
 
-	@Override
-	public List<Language> findLanguageByFilmId(int filmId) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	
 
 }

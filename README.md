@@ -21,6 +21,6 @@
 
 ### Technologies Used
 
-* Standardized Query Language search : SQL
+* Standardized Query Language  : SQL query utilizing select, joins, predicates and functions.
 * Object-Relational Mapping : ORM
 * Java Database Connectivity :  JDBC
